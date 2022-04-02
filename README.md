@@ -17,6 +17,8 @@
 
 - [ ] Explaining and Harnessing Adversarial Examples
 - [ ] Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images
+- [ ] Adversarial Machine Learning at Scale (ICLR 2016)
+- [ ] Towards Evaluating the Robustness of Neural Networks (IEEE 2017)
 
 ### 2017年及以后
 
