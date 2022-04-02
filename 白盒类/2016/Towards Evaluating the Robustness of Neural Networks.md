@@ -10,7 +10,7 @@
 
 现在我们转向构建对抗性示例的方法。首先，我们依赖于对抗性示例的初始公式[46]，并正式定义了为图像x查找对抗性实例的问题，如下所示：
 
-![image-20220331185604386](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331185604386.png)
+![image-20220331185604386](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331185604386.png)
 
 其中x是固定的，目标是找到使D（x，x+δ）最小的δ。也就是说，我们想找到一些小的变化δ，我们可以对图像x进行一些小的改变，改变其分类，但结果仍然是有效的图像。这里D是一些距离度量；对我们来说，它将是L0、L2或L∞ 如前所述
 
@@ -22,7 +22,7 @@
 
 因此，我们用一种更适合优化的不同形式来表达它。我们定义了一个目标函数f，使得C（x+δ）=t**当且仅当**f（x+δ）≤ 0。f有很多可能的选择：
 
-![image-20220331191328143](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331191328143.png)
+![image-20220331191328143](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331191328143.png)
 
 其中s是正确的分类，（e）+是max（e，0）的缩写，softplus（x）=log（1+exp（x）），$\text{loss}_{F,s}(x)$是x的交叉熵损失。
 
@@ -30,15 +30,15 @@
 
 现在，与其把问题描述为
 
-![image-20220331192000172](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192000172-16487256010371.png)
+![image-20220331192000172](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192000172-16487256010371.png)
 
 我们使用另一种描述
 
-![image-20220331192028765](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192028765-16487256301702.png)
+![image-20220331192028765](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192028765-16487256301702.png)
 
 ---
 
-![image-20220331192619774](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192619774.png)
+![image-20220331192619774](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192619774.png)
 
 图2. 对常数c的敏感性。我们绘制了通过梯度下降计算的对抗性示例的L2距离，作为目标函数f6的函数c。当c小于0.1时，攻击很少成功。**c>1后，攻击的效果会降低，但总是成功的**。
 
@@ -46,7 +46,7 @@
 
 其中c>0是一个适当选择的常数。这两者是等价的，因为存在c>0，因此后者的最优解与前者的最优解相匹配。在用lp范数实例化距离度量D之后，问题变成：给定x，找到δ满足
 
-![image-20220331192851894](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192851894.png)
+![image-20220331192851894](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331192851894.png)
 
 根据经验，我们发现选择c的最佳方法**通常是**使用c的最小值，对应的解$x^*$满足$f(x^*)\le 0$。这会导致梯度下降同时最小化两个项，而不是只选择一个项进行优化。
 
@@ -70,7 +70,7 @@
 
 3. 变量代换：引入了一个新的变量w，而不是在上面定义的变量δ上进行优化，我们应用变量的改变并在w上进行优化，设置
 
-   ![image-20220331195025932](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331195025932.png)
+   ![image-20220331195025932](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331195025932.png)
 
    因为$-1\le \tanh(w_i)\le 1$，于是有$0\le x_i+\delta_i\le 1$，所以解是合法的。
 
@@ -84,7 +84,7 @@
 
 ---
 
-![image-20220331200040204](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331200040204.png)
+![image-20220331200040204](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331200040204.png)
 
 表3. 评估七个可能目标函数之一与三个框约束编码之一的所有组合。我们展示了**平均L2失真**、标准偏差和**成功概率**（可以找到对抗性示例的实例的分数）。对**1000个随机实例**进行评估。当成功率不是100%时，平均值仅适用于成功的攻击。
 
@@ -108,11 +108,11 @@
 
 考虑到这一点，考虑损失函数F4（F1的参数是相似的）。为了让梯度下降攻击最初做出任何改变，常数c必须足够大，以
 
-![image-20220331205207711](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331205207711.png)
+![image-20220331205207711](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331205207711.png)
 
 或者说，当$\epsilon$→ 0,
 
-![image-20220331205405454](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331205405454.png)
+![image-20220331205405454](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331205405454.png)
 
 这意味着c必须大于梯度的倒数才能取得进展，但f1的梯度与F（·t）相同，因此在初始图像周围很小，这意味着c必须非常大
 
@@ -138,11 +138,11 @@
 
 把这些想法放在一起，我们得到了一种在L2度量中寻找具有低失真的对抗性示例的方法。给定x，我们选择一个目标类t（$t\neq C^*(x)$ ）然后搜索解决问题的$w$
 
-![image-20220331212623526](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331212623526.png)
+![image-20220331212623526](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331212623526.png)
 
 其中$f$被定义为
 
-![image-20220331212707241](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331212707241.png)
+![image-20220331212707241](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331212707241.png)
 
 该f基于之前发现的最佳目标函数，稍加修改，以便我们可以通过调整κ来控制错误分类发生的置信度。参数κ鼓励解算器找到一个敌对实例x 0，该实例将被高度置信地归类为t类。
 
@@ -150,7 +150,7 @@
 
 ---
 
-![image-20220331221720153](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331221720153.png)
+![image-20220331221720153](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331221720153.png)
 
 Fig3. 我们的L2对手应用MNIST数据集，对每个源/目标对执行有针对性的攻击。每个数字都是数据集中具有该标签的第一个图像
 
@@ -178,7 +178,7 @@ JSMA会增加一组（最初为空）允许更改的像素，并将像素设置�
 
 ---
 
-![image-20220331224044266](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331224044266-16487376447601.png)
+![image-20220331224044266](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331224044266-16487376447601.png)
 
 图4。我们的L0对手应用MNIST数据集，对每个源/目标对执行有针对性的攻击。每个数字都是具有该标签的数据集中的第一个图像。
 
@@ -190,13 +190,13 @@ CIFAR的可比数字（图11）见附录
 
 L∞ 距离度量不是完全可微的，标准的梯度下降法也不能很好地解决这个问题。我们进行了原始的优化实验
 
-![image-20220331224230386](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220331224230386-16487377531542.png)
+![image-20220331224230386](Towards Evaluating the Robustness of Neural Networks.assets\image-20220331224230386-16487377531542.png)
 
 然而，我们发现梯度下降产生了非常糟糕的结果：$||\delta||$只惩罚δ中最大的（绝对值）条目，对其他条目没有影响。因此，梯度下降很快就会在**两个次优解之间振荡**。考虑一个δi＝0.5和δj＝0.5-$\epsilon$的情形。$L_\infty$只会惩罚$\delta_i$而不是$\delta_j$，$\frac{\partial}{\part \delta_j}||\delta||_\infty$将会是0。因此，梯度不会对增加δj施加惩罚，即使它已经很大了。在下一次迭代中，我们可能会移动到δj略大于δi的位置，$\delta_i=0.5-\epsilon'$和$\delta_j=0.5+\epsilon''$，我们起点的镜像。换句话说，梯度下降可能会在δi=δj=0.5的直线上来回振荡，使得几乎不可能进行前进。
 
 我们使用迭代攻击来解决这个问题。我们将目标函数中的L2项替换为超过$\tau$的任何项的惩罚（最初为1，在每次迭代中减少）。这可以防止振荡，因为这个损失项会同时惩罚所有较大的值。具体来说，在每次迭代中，我们都要解决
 
-![image-20220402144852583](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402144852583.png)
+![image-20220402144852583](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402144852583.png)
 
 每次迭代后，如果所有i的δi<τ，我们将τ减少0.9倍并重复；否则，我们将终止搜索。
 
@@ -208,7 +208,7 @@ L∞ 距离度量不是完全可微的，标准的梯度下降法也不能很好
 
 ---
 
-![image-20220402145307732](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402145307732.png)
+![image-20220402145307732](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402145307732.png)
 
 图5。我们的L∞ 对手应用于MNIST数据集，对每个源/目标对执行有针对性的攻击。每个数字都是数据集中具有该标签的第一个图像
 
@@ -242,7 +242,7 @@ MNIST和CIFAR的结果见表IV，ImageNet的结果见表V
 
 ---
 
-![image-20220402150228553](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402150228553.png)
+![image-20220402150228553](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402150228553.png)
 
 表5 针对我们的MNIST和CIFAR模型，将目标攻击的三种变体与之前的工作进行比较。当成功率不是100%时，平均值在成功的样本上统计
 
@@ -254,11 +254,11 @@ MNIST和CIFAR的结果见表IV，ImageNet的结果见表V
 
 ---
 
-![image-20220402150356993](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402150356993.png)
+![image-20220402150356993](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402150356993.png)
 
 图6. 针对10位MNIST数字中的每一位进行有针对性的攻击，其中三个距离度量的起始图像均为全黑。
 
-![image-20220402150428831](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402150428831-16488830693753.png)
+![image-20220402150428831](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402150428831-16488830693753.png)
 
 图7。针对10位MNIST数字中的每一位进行有针对性的攻击，其中起始图像在三个距离度量中均为全白色
 
@@ -282,7 +282,7 @@ MNIST和CIFAR的结果见表IV，ImageNet的结果见表V
 
 回想一下，softmax函数是神经网络的最后一层。防御性蒸馏修改softmax函数，使其也包含温度常数T
 
-![image-20220402151345608](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402151345608.png)
+![image-20220402151345608](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402151345608.png)
 
 很容易看出，softmax（x，T）=softmax（x/T，1）。直观地说，升高温度会导致“较软”的最大值，降低温度会导致“较硬”的最大值。当温度极限为0时，softmax接近最大值；当极限趋于无穷大时，softmax（x）接近均匀分布
 
@@ -305,7 +305,7 @@ L-BFGS和Deepfool失败是因为F（·）的梯度几乎总是为零，这禁止
 
 这导致L-BFGS最小化程序无法取得进展并终止。相反，如果我们使用之前确定的稳定目标函数运行L-BFGS，而不是Szegedy等人[46]建议的目标函数lossF，L（·），L-BFGS不会失败。另一种修复攻击的方法是设置
 
-![image-20220402153222689](D:\PapersAboutAdversarialExamples\白盒类\2016\Towards Evaluating the Robustness of Neural Networks.assets\image-20220402153222689.png)
+![image-20220402153222689](Towards Evaluating the Robustness of Neural Networks.assets\image-20220402153222689.png)
 
 式中，T是所选的蒸馏温度。然后，最小化损失$\text{loss}_{F',l}(\cdot)$将不会失败，因为现在梯度不会因为浮点算术舍入而消失。这清楚地表明了使用损失函数作为最小化目标的脆弱性。
 
