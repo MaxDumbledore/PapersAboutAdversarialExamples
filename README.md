@@ -23,7 +23,7 @@
 
 - [ ] Explaining and Harnessing Adversarial Examples
 - [ ] Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images
-- [ ] DeepFool: a simple and accurate method to fool deep neural networks (CVPR 2016)
+- [x] DeepFool: a simple and accurate method to fool deep neural networks (CVPR 2016)
 - [x] The Limitations of Deep Learning in Adversarial Settings (S&P 2016)
 - [ ] Adversarial Machine Learning at Scale (ICLR 2016)
 - [x] Towards Evaluating the Robustness of Neural Networks (S&P 2017)
@@ -71,6 +71,8 @@
 ### 2017年及以前
 
 - [ ] Practical Black-Box Attacks against Machine Learning （CCS 2017）
+- [x] UPSET and ANGRI : Breaking High Performance Image Classifiers (arxiv preprint 2017)
+- [x] Houdini: Fooling deep structured prediction models (arxiv preprint 2017)
 
 ### 2017年以后
 
